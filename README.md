@@ -9,5 +9,3 @@
 ![C#](https://img.shields.io/badge/C%23%20-05122A?style=flat&logo=c-sharp&logoColor=FFA518)
 
 <p align="left"><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=angelucas&show_icons=true&locale=en&layout=compact&theme=radical" alt="vaulstein" /></p>
-
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=angelucas&theme=radical" alt="angelucas" /></p>
