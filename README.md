@@ -8,3 +8,8 @@
 ![C#](https://img.shields.io/badge/C%23%20-05122A?style=flat&logo=c-sharp&logoColor=FFA518)
 
 <p align="left"><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=angelucas&show_icons=true&locale=en&layout=compact&theme=radical" alt="vaulstein" /></p>
+
+
+## 🏆 GitHub Trophies
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=angelucas&theme=nord&column=7)](https://github.com/ryo-ma/github-profile-trophy)
