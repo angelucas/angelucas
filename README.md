@@ -1,12 +1,12 @@
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=angelucas.angelucas)
 
-<img align="left" src="imagens/csharp.png" style="padding: 1%" /></a>
-<img align="left" src="imagens/dotnet.png" style="padding: 1%" /></a>
-<img align="left" src="imagens/vscode.png" style="padding: 1%" />
-<img align="left" src="imagens/visual-studio.png" style="padding: 1%" />
-<img align="left" src="imagens/mysql.png" style="padding: 1%" /></a>
-<img align="left" src="imagens/git.png" style="padding: 1%" /></a>
+<img align="left" src="img/csharp.png" style="padding: 1%" /></a>
+<img align="left" src="img/dotnet.png" style="padding: 1%" /></a>
+<img align="left" src="img/vscode.png" style="padding: 1%" />
+<img align="left" src="img/visual-studio.png" style="padding: 1%" />
+<img align="left" src="img/mysql.png" style="padding: 1%" /></a>
+<img align="left" src="img/git.png" style="padding: 1%" /></a>
 
 <br />
 <br />
