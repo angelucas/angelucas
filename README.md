@@ -4,7 +4,7 @@
 <p><em>Software Engineer at <a href="https://www.cwi.com.br">CWI Software</a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
 </em></p>
 
-[![Linkedin: Lucas Angelo](https://img.shields.io/badge/-LucasAngelo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucas-angelo-in/)](https://www.https://www.linkedin.com/in/lucas-angelo-in/)
+![Linkedin](https://img.shields.io/badge/-LucasAngelo-blue?style=flat-square&logo=Linkedin&logoColor=white](https://www.linkedin.com/in/lucas-angelo-in/)&nbsp;
 
 ![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)&nbsp;
 ![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3&logoColor=1572B6)&nbsp;
