@@ -1,9 +1,6 @@
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=angelucas.angelucas)
 
-<p><em>Software Engineer at <a href="https://www.cwi.com.br">CWI Software</a><img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> 
-</em></p>
-
 [![Linkedin](https://img.shields.io/badge/-LucasAngelo-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/lucas-angelo-in/)&nbsp;
 
 ![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)&nbsp;
