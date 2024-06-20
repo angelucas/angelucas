@@ -1,0 +1,66 @@
+title = "lucasmachado.io"
+
+theme = "hugo-coder"
+
+languageCode = "pt-br"
+defaultContentLanguage = "pt-br"
+
+paginate = 20
+canonifyURLs = true
+
+enableEmoji = true
+enableGitInfo = true
+
+[taxonomies]
+category = "categories"
+series = "series"
+tag = "tags"
+
+[markup.highlight]
+style = "github-dark"
+tabWidth = 4
+
+[params]
+author = "Lucas Machado"
+avatarURL = "images/avatar.jpg"
+images = ["images/og_cover.png"]
+description = "Lucas Machado's personal site and blog"
+keywords = "blog,developer,personal,software,python,c#,code,programador"
+info = "Software Developer"
+
+dateFormat = "21-5-2006"
+
+colorScheme = "dark"
+hideColorSchemeToggle = true
+
+customSCSS = ["scss/custom.scss"]
+
+[params.goatCounter]
+code = "lucasmachado"
+
+[[params.social]]
+name = "Github"
+icon = "fa-brands fa-github fa-2x"
+weight = 1
+url = "https://github.com/angelucas/"
+
+[[params.social]]
+name = "LinkedIn"
+icon = "fa-brands fa-linkedin fa-2x"
+weight = 4
+url = "https://www.linkedin.com/in/lucasmachado-io/"
+
+[[menu.main]]
+name = "Agora"
+weight = 1
+url = "agora/"
+
+# [[menu.main]]
+# name = "Blog"
+# weight = 2
+# url = "posts/"
+
+[[menu.main]]
+name = "Sobre"
+weight = 3
+url = "sobre/"
