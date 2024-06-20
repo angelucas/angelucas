@@ -7,5 +7,3 @@ My interests are:
 - C Sharp 🎯 and Cloud Computing ☁️
 - Books 📚
 - Gym 🏋️‍♂️
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-lucasmachado-informational)](https://www.linkedin.com/in/lucasmachado-io/)
