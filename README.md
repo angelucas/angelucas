@@ -1,4 +1,4 @@
-### Hello :wave:
+### Olá :wave:
 
 I'm Lucas Machado, a software developer from Porto Alegre, Brazil.
 
