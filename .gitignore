@@ -1,2 +1,26 @@
-/public
-.hugo_build.lock
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro cache
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor (optional local settings)
+.vscode/*
+!.vscode/extensions.json
+.idea/

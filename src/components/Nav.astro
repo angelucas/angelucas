@@ -1,0 +1,186 @@
+---
+import LangSwitcher from './LangSwitcher.astro';
+import Logo from './Logo.astro';
+import { useTranslations, type Lang } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === 'en' ? '/en' : '';
+
+const links = [
+  { href: `${prefix}/#skills`, label: t('nav.skills') },
+  { href: `${prefix}/#projects`, label: t('nav.projects') },
+  { href: `${prefix}/#experience`, label: t('nav.experience') },
+  { href: `${prefix}/#contact`, label: t('nav.contact') },
+];
+---
+
+<header class="nav" id="nav">
+  <nav class="nav-inner container">
+    <a href={lang === 'en' ? '/en/' : '/'} class="logo" aria-label="Home">
+      <Logo />
+    </a>
+
+    <ul class="nav-links" id="nav-links">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="nav-link" data-section={link.href.split('#')[1]}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="nav-actions">
+      <LangSwitcher lang={lang} />
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(10, 10, 15, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-accent-light);
+    transition: var(--transition);
+  }
+
+  .logo:hover {
+    color: var(--color-text);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    transition: var(--transition);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-text);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text);
+    transition: var(--transition);
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(10, 10, 15, 0.98);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem;
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .nav-links.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-links li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-links li:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(!!open));
+  });
+
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('data-section') === id);
+          });
+        }
+      });
+    },
+    { rootMargin: '-40% 0px -50% 0px' }
+  );
+
+  sections.forEach((s) => observer.observe(s));
+</script>

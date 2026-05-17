@@ -1,0 +1,15 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Portfolio from '@/components/Portfolio.astro';
+import type { Lang } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<BaseLayout lang={lang}>
+  <Portfolio lang={lang} />
+</BaseLayout>

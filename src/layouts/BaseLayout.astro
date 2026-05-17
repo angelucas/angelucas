@@ -1,0 +1,67 @@
+---
+import '@/styles/global.css';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import PageLoader from '@/components/PageLoader.astro';
+import { useTranslations, type Lang } from '@/i18n/ui';
+import { siteConfig } from '@/data/site';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+const t = useTranslations(lang);
+const pageTitle = title ?? t('meta.title');
+const pageDescription = description ?? t('meta.description');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(siteConfig.images.og, Astro.site);
+const htmlLang = lang === 'pt-br' ? 'pt-BR' : 'en';
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content="Lucas Machado" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content={htmlLang} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="pt-BR" href={new URL('/', Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{pageTitle}</title>
+
+    <script is:inline data-goatcounter="https://lucasmachado.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <PageLoader lang={lang} />
+    <Nav lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script is:inline src="/scripts/reveal.js"></script>
+  </body>
+</html>

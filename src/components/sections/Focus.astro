@@ -1,0 +1,57 @@
+---
+import Section from '../Section.astro';
+import { focusItems } from '@/data/focus';
+import { useTranslations, type Lang } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const items = focusItems[lang];
+---
+
+<Section id="focus">
+  <h2 class="section-title">{t('focus.title')}</h2>
+  <p class="section-subtitle">{t('focus.subtitle')}</p>
+
+  <article class="focus-card card">
+    <ul class="focus-list">
+      {items.map((item) => (
+        <li class="focus-item">{item}</li>
+      ))}
+    </ul>
+  </article>
+</Section>
+
+<style>
+  .focus-card {
+    max-width: 720px;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1.5rem;
+  }
+
+  .focus-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .focus-item {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    font-size: 0.9375rem;
+  }
+
+  .focus-item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-light);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,142 @@
+---
+import Section from '../Section.astro';
+import { siteConfig } from '@/data/site';
+import { useTranslations, type Lang } from '@/i18n/ui';
+import { Mail, Code2, Briefcase } from '@lucide/astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const links = [
+  {
+    label: t('contact.email'),
+    href: siteConfig.email,
+    icon: Mail,
+    external: false,
+  },
+  {
+    label: t('contact.github'),
+    href: siteConfig.github,
+    icon: Code2,
+    external: true,
+  },
+  {
+    label: t('contact.linkedin'),
+    href: siteConfig.linkedin,
+    icon: Briefcase,
+    external: true,
+  },
+] as const;
+---
+
+<Section id="contact">
+  <h2 class="section-title">{t('contact.title')}</h2>
+  <p class="section-subtitle">{t('contact.subtitle')}</p>
+
+  <p class="contact-message">{t('contact.message')}</p>
+
+  <ul class="contact-links">
+    {
+      links.map((link) => {
+        const Icon = link.icon;
+        return (
+          <li>
+            <a
+              href={link.href}
+              class="contact-card card"
+              {...(link.external
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+            >
+              <span class="contact-icon-wrap" aria-hidden="true">
+                <Icon class="contact-icon" size={22} stroke-width={1.5} />
+              </span>
+              <span class="contact-label">{link.label}</span>
+              <span class="contact-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Section>
+
+<style>
+  .contact-message {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: inherit;
+  }
+
+  .contact-label {
+    flex: 1;
+    font-weight: 600;
+  }
+
+  .contact-arrow {
+    color: var(--color-accent-light);
+    transition: transform var(--transition);
+  }
+
+  .contact-card:hover .contact-arrow {
+    transform: translateX(4px);
+  }
+
+  .contact-icon-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius);
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: var(--color-accent-light);
+    transition: var(--transition);
+  }
+
+  .contact-card:hover .contact-icon-wrap {
+    background: rgba(59, 130, 246, 0.16);
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  }
+
+  .contact-icon {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-arrow,
+    .contact-icon-wrap {
+      transition: none;
+    }
+
+    .contact-card:hover .contact-arrow {
+      transform: none;
+    }
+
+    .contact-card:hover .contact-icon-wrap {
+      box-shadow: none;
+    }
+  }
+</style>

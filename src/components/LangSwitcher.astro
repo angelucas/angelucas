@@ -1,0 +1,54 @@
+---
+import { languages, switchLangPath, type Lang } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="lang-switcher" role="group" aria-label="Language">
+  {
+    (Object.keys(languages) as Lang[]).map((l) => (
+      <a
+        href={switchLangPath(l)}
+        class:list={['lang-btn', { active: l === lang }]}
+        hreflang={l === 'pt-br' ? 'pt-BR' : 'en'}
+        lang={l === 'pt-br' ? 'pt-BR' : 'en'}
+      >
+        {languages[l]}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+
+  .lang-btn {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--color-muted);
+    border-radius: 6px;
+    transition: var(--transition);
+  }
+
+  .lang-btn:hover {
+    color: var(--color-text);
+  }
+
+  .lang-btn.active {
+    background: var(--color-accent);
+    color: #fff;
+  }
+</style>

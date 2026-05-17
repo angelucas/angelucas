@@ -1,0 +1,115 @@
+---
+import { Coffee } from '@lucide/astro';
+import { useTranslations, type Lang } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div id="page-loader" class="page-loader" role="status" aria-live="polite" aria-busy="true">
+  <div class="page-loader-inner">
+    <Coffee class="page-loader-icon" size={40} stroke-width={1.5} aria-hidden="true" />
+    <span class="page-loader-label">{t('loader.label')}</span>
+  </div>
+</div>
+
+<style is:global>
+  body.is-loading {
+    overflow: hidden;
+  }
+
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg);
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+  }
+
+  .page-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .page-loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .page-loader-icon {
+    color: var(--color-accent-light);
+    animation: loaderPulse 1.2s ease-in-out infinite;
+  }
+
+  .page-loader-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  @keyframes loaderPulse {
+    0%,
+    100% {
+      opacity: 0.65;
+      transform: scale(1) translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.06) translateY(-3px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-loader {
+      transition: opacity 0.15s ease;
+    }
+
+    .page-loader-icon {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    document.body.classList.add('is-loading');
+    var loader = document.getElementById('page-loader');
+    if (!loader) return;
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var minMs = reduced ? 0 : 450;
+    var start = Date.now();
+
+    function hide() {
+      var wait = Math.max(0, minMs - (Date.now() - start));
+      setTimeout(function () {
+        loader.classList.add('is-hidden');
+        loader.setAttribute('aria-busy', 'false');
+        document.body.classList.remove('is-loading');
+        loader.addEventListener(
+          'transitionend',
+          function () {
+            loader.remove();
+          },
+          { once: true }
+        );
+      }, wait);
+    }
+
+    if (document.readyState === 'complete') hide();
+    else window.addEventListener('load', hide, { once: true });
+  })();
+</script>

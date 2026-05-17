@@ -1,0 +1,81 @@
+---
+import Section from '../Section.astro';
+import Badge from '../Badge.astro';
+import { skills, type SkillCategory } from '@/data/skills';
+import { useTranslations, type Lang } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const categories: SkillCategory[] = ['backend', 'frontend', 'cloud', 'tools'];
+const categoryLabels: Record<SkillCategory, string> = {
+  backend: t('skills.backend'),
+  frontend: t('skills.frontend'),
+  cloud: t('skills.cloud'),
+  tools: t('skills.tools'),
+};
+---
+
+<Section id="skills" class="skills-layout">
+  <h2 class="section-title">{t('skills.title')}</h2>
+  <p class="section-subtitle">{t('skills.subtitle')}</p>
+
+  {
+    categories.map((cat) => (
+      <article class="skill-category card">
+        <h3 class="category-title">{categoryLabels[cat]}</h3>
+        <ul class="skill-list">
+          {skills
+            .filter((s) => s.category === cat)
+            .map((skill) => (
+              <li class="skill-item">
+                <Badge label={skill.name} />
+              </li>
+            ))}
+        </ul>
+      </article>
+    ))
+  }
+</Section>
+
+<style>
+  :global(.skills-layout) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    align-content: start;
+  }
+
+  :global(.skills-layout .section-title),
+  :global(.skills-layout .section-subtitle) {
+    grid-column: 1 / -1;
+  }
+
+  .category-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent-light);
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-item {
+    transition: transform var(--transition);
+  }
+
+  .skill-item:hover {
+    transform: scale(1.05);
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getLangFromUrl } from '@/i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const messages = {
+  'pt-br': {
+    title: 'Página não encontrada',
+    text: 'A página que você procura não existe.',
+    home: 'Voltar ao início',
+  },
+  en: {
+    title: 'Page not found',
+    text: 'The page you are looking for does not exist.',
+    home: 'Back to home',
+  },
+};
+const m = messages[lang];
+const home = lang === 'en' ? '/en/' : '/';
+---
+
+<BaseLayout lang={lang} title={`404 — ${m.title}`}>
+  <section class="not-found container">
+    <h1>404</h1>
+    <p>{m.text}</p>
+    <a href={home} class="btn btn-primary">{m.home}</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .not-found h1 {
+    font-size: 6rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-gradient-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
