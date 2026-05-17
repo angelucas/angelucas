@@ -1,6 +1,6 @@
 # lucasmachado.io
 
-Personal portfolio for Lucas Machado — .NET fullstack developer.
+Personal portfolio for Lucas Angelo — .NET fullstack developer.
 
 Built with [Astro](https://astro.build), TypeScript, and vanilla CSS. Bilingual (pt-BR / English).
 

@@ -1,5 +1,6 @@
 ---
 import { useTranslations, type Lang } from '@/i18n/ui';
+import { siteConfig } from '@/data/site';
 
 interface Props {
   lang: Lang;
@@ -11,7 +12,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="footer container">
-  <p>© {year} Lucas Machado. {t('footer.rights')}</p>
+  <p>© {year} {siteConfig.name}. {t('footer.rights')}</p>
 </footer>
 
 <style>

@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'Lucas Machado',
+  name: 'Lucas Angelo',
   location: {
     'pt-br': 'Porto Alegre, Brasil',
     en: 'Porto Alegre, Brazil',

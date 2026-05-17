@@ -1,5 +1,5 @@
 export default {
-  'meta.title': 'Lucas Machado | Desenvolvedor .NET Fullstack',
+  'meta.title': 'Lucas Angelo | Desenvolvedor .NET Fullstack',
   'meta.description':
     'Desenvolvedor .NET full stack com 7+ anos em aplicações corporativas. APIs, integrações, SQL e engenharia de software em Porto Alegre.',
 
@@ -11,8 +11,8 @@ export default {
   'nav.contact': 'Contato',
 
   'hero.greeting': 'Olá, eu sou',
-  'hero.photoAlt': 'Lucas Machado, desenvolvedor full stack',
-  'hero.name': 'Lucas Machado',
+  'hero.photoAlt': 'Lucas Angelo, desenvolvedor full stack',
+  'hero.name': 'Lucas Angelo',
   'hero.tagline': 'Desenvolvedor .NET · C# · Fullstack · Azure',
   'hero.mono': '// .NET full stack · APIs · integrações · SQL',
   'hero.bio':
