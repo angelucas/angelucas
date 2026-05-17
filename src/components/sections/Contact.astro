@@ -56,7 +56,7 @@ const links = [
                 <Icon class="contact-icon" size={22} stroke-width={1.5} />
               </span>
               <span class="contact-label">{link.label}</span>
-              <span class="contact-arrow" aria-hidden="true">→</span>
+              <span class="contact-chevron" aria-hidden="true"></span>
             </a>
           </li>
         );
@@ -90,15 +90,28 @@ const links = [
   .contact-label {
     flex: 1;
     font-weight: 600;
+    min-width: 0;
   }
 
-  .contact-arrow {
-    color: var(--color-accent-light);
-    transition: transform var(--transition);
+  /* Pirâmide deitada → (mesma cor das bolinhas da experiência) */
+  .contact-chevron {
+    flex-shrink: 0;
+    display: block;
+    width: 0.5rem;
+    height: 0.7rem;
+    background: var(--color-accent);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    box-shadow: 0 0 8px var(--color-accent-glow);
+    transition:
+      transform var(--transition),
+      background var(--transition),
+      box-shadow var(--transition);
   }
 
-  .contact-card:hover .contact-arrow {
-    transform: translateX(4px);
+  .contact-card:hover .contact-chevron {
+    background: var(--color-accent-light);
+    box-shadow: 0 0 12px var(--color-accent-glow);
+    transform: translateX(3px);
   }
 
   .contact-icon-wrap {
@@ -126,12 +139,12 @@ const links = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-arrow,
+    .contact-chevron,
     .contact-icon-wrap {
       transition: none;
     }
 
-    .contact-card:hover .contact-arrow {
+    .contact-card:hover .contact-chevron {
       transform: none;
     }
 
