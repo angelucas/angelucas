@@ -14,6 +14,7 @@ const { hero, heroFallback } = siteConfig.images;
 ---
 
 <section class="hero" id="hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="container hero-grid">
     <figure class="hero-photo reveal visible">
       <div class="hero-photo-glow" aria-hidden="true"></div>
@@ -35,6 +36,7 @@ const { hero, heroFallback } = siteConfig.images;
       <p class="hero-greeting">{t('hero.greeting')}</p>
       <h1 class="hero-name">{t('hero.name')}</h1>
       <p class="hero-tagline">{t('hero.tagline')}</p>
+      <p class="hero-mono" aria-hidden="true">{t('hero.mono')}</p>
       <p class="hero-bio">{t('hero.bio')}</p>
 
       <p class="hero-cta">
@@ -59,10 +61,23 @@ const { hero, heroFallback } = siteConfig.images;
     overflow: hidden;
   }
 
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, black 20%, transparent 72%);
+    pointer-events: none;
+  }
+
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
     background:
       radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.25), transparent),
       radial-gradient(ellipse 60% 40% at 80% 50%, rgba(139, 92, 246, 0.15), transparent),
@@ -79,6 +94,7 @@ const { hero, heroFallback } = siteConfig.images;
     transform: translateX(-50%);
     width: 600px;
     height: 400px;
+    z-index: 1;
     background: radial-gradient(circle, var(--color-accent-glow), transparent 70%);
     filter: blur(60px);
     pointer-events: none;
@@ -97,7 +113,7 @@ const { hero, heroFallback } = siteConfig.images;
 
   .hero-grid {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -194,7 +210,16 @@ const { hero, heroFallback } = siteConfig.images;
     font-family: var(--font-mono);
     font-size: clamp(0.875rem, 2.5vw, 1.125rem);
     color: var(--color-accent-light);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-mono {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--color-muted);
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
   }
 
   .hero-bio {
@@ -227,5 +252,11 @@ const { hero, heroFallback } = siteConfig.images;
     border-radius: 50%;
     background: var(--color-accent);
     vertical-align: middle;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before {
+      animation: none;
+    }
   }
 </style>

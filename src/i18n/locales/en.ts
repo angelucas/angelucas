@@ -1,7 +1,7 @@
 export default {
-  'meta.title': 'Lucas Machado — .NET Fullstack Developer',
+  'meta.title': 'Lucas Machado | .NET Fullstack Developer',
   'meta.description':
-    'Full stack developer in Porto Alegre. .NET, C#, APIs, and AI-assisted productivity with Cursor in my development workflow.',
+    '.NET full stack developer with 7+ years in enterprise applications. APIs, integrations, SQL, and software engineering in Porto Alegre.',
 
   'loader.label': 'Loading…',
 
@@ -14,8 +14,9 @@ export default {
   'hero.photoAlt': 'Lucas Machado, full stack developer',
   'hero.name': 'Lucas Machado',
   'hero.tagline': '.NET · C# · Fullstack · Azure Developer',
+  'hero.mono': '// .NET full stack · APIs · integrations · SQL',
   'hero.bio':
-    'Full stack developer at Pestana Leilões. Experience with .NET, APIs, and the web ecosystem at companies such as CWI, DB/Banrisul, and CREA-RS.',
+    'Software developer with 7+ years building enterprise applications. I work as a full stack .NET developer at Pestana Leilões, with a focus on APIs, integrations, SQL, and legacy systems in agile teams.',
   'hero.cta.projects': 'View projects',
   'hero.cta.contact': 'Get in touch',
 
@@ -35,7 +36,7 @@ export default {
   'projects.viewDemo': 'View demo',
 
   'experience.title': 'Experience',
-  'experience.subtitle': 'Professional journey',
+  'experience.subtitle': 'Seven+ years building and evolving enterprise software',
 
   'contact.title': 'Contact',
   'contact.subtitle': "Let's talk?",

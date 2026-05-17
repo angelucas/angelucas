@@ -17,8 +17,8 @@ const t = useTranslations(lang);
 
   <ol class="timeline">
     {
-      experience.map((item) => (
-        <li class="timeline-item">
+      experience.map((item, index) => (
+        <li class="timeline-item reveal" style={`--stagger-index: ${index}`}>
           <span class="timeline-marker" aria-hidden="true" />
           <article class="timeline-content card">
             <header class="timeline-header">

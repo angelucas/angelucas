@@ -30,7 +30,7 @@ const projectIcons = {
         const hasLinks = Boolean(project.github || project.demo);
 
         return (
-          <li class="projects-grid-item">
+          <li class="projects-grid-item reveal" style={`--stagger-index: ${index}`}>
             <article class="project-card card">
               <div class="project-accent" aria-hidden="true" />
 

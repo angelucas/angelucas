@@ -1,7 +1,7 @@
 export default {
-  'meta.title': 'Lucas Machado — Desenvolvedor .NET Fullstack',
+  'meta.title': 'Lucas Machado | Desenvolvedor .NET Fullstack',
   'meta.description':
-    'Desenvolvedor full stack em Porto Alegre. .NET, C#, APIs e produtividade com IA e Cursor no fluxo de desenvolvimento.',
+    'Desenvolvedor .NET full stack com 7+ anos em aplicações corporativas. APIs, integrações, SQL e engenharia de software em Porto Alegre.',
 
   'loader.label': 'Carregando…',
 
@@ -14,8 +14,9 @@ export default {
   'hero.photoAlt': 'Lucas Machado, desenvolvedor full stack',
   'hero.name': 'Lucas Machado',
   'hero.tagline': 'Desenvolvedor .NET · C# · Fullstack · Azure',
+  'hero.mono': '// .NET full stack · APIs · integrações · SQL',
   'hero.bio':
-    'Desenvolvedor full stack na Pestana Leilões. Experiência com .NET, APIs e ecossistema web em empresas como CWI, DB/Banrisul e CREA-RS.',
+    'Desenvolvedor de software com mais de 7 anos em aplicações corporativas. Atuo como desenvolvedor .NET full stack na Pestana Leilões, com foco em APIs, integrações, SQL e sistemas legados em ambientes ágeis.',
   'hero.cta.projects': 'Ver projetos',
   'hero.cta.contact': 'Entrar em contato',
 
@@ -35,7 +36,7 @@ export default {
   'projects.viewDemo': 'Ver demo',
 
   'experience.title': 'Experiência',
-  'experience.subtitle': 'Trajetória profissional',
+  'experience.subtitle': 'Mais de 7 anos construindo e evoluindo software corporativo',
 
   'contact.title': 'Contato',
   'contact.subtitle': 'Vamos conversar?',

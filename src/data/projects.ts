@@ -13,8 +13,8 @@ export const projects: Project[] = [
   {
     id: 'sn50',
     title: {
-      'pt-br': 'SN-50 — Fantasy Console',
-      en: 'SN-50 — Fantasy Console',
+      'pt-br': 'SN-50: Fantasy Console',
+      en: 'SN-50: Fantasy Console',
     },
     description: {
       'pt-br':
@@ -33,9 +33,9 @@ export const projects: Project[] = [
     },
     description: {
       'pt-br':
-        'Este portfolio — site pessoal bilíngue com Astro, design dark contemporâneo e foco em performance.',
+        'Site pessoal bilíngue com Astro, design dark contemporâneo e foco em performance.',
       en:
-        'This portfolio — bilingual personal site built with Astro, contemporary dark design, and performance-first approach.',
+        'Bilingual personal site built with Astro, contemporary dark design, and a performance-first approach.',
     },
     stack: ['Astro', 'TypeScript', 'CSS'],
     github: 'https://github.com/angelucas/angelucas',
