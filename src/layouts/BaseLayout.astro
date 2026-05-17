@@ -5,20 +5,44 @@ import Footer from '@/components/Footer.astro';
 import PageLoader from '@/components/PageLoader.astro';
 import { useTranslations, type Lang } from '@/i18n/ui';
 import { siteConfig } from '@/data/site';
+import { buildStructuredData } from '@/lib/seo';
 
 interface Props {
   lang: Lang;
   title?: string;
   description?: string;
+  /** Prevent indexing (e.g. 404). */
+  noindex?: boolean;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, noindex = false } = Astro.props;
 const t = useTranslations(lang);
 const pageTitle = title ?? t('meta.title');
 const pageDescription = description ?? t('meta.description');
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteOrigin = new URL('/', Astro.site);
 const ogImageURL = new URL(siteConfig.images.og, Astro.site);
 const htmlLang = lang === 'pt-br' ? 'pt-BR' : 'en';
+const ogLocale = lang === 'pt-br' ? 'pt_BR' : 'en_US';
+const ogLocaleAlternate = lang === 'pt-br' ? 'en_US' : 'pt_BR';
+const ogImageAlt = t('hero.photoAlt');
+const contactEmail = siteConfig.email.replace(/^mailto:/i, '');
+const structuredDataJson = noindex
+  ? null
+  : JSON.stringify(
+      buildStructuredData({
+        lang,
+        pageUrl: canonicalURL,
+        siteOrigin,
+        name: siteConfig.name,
+        pageTitle,
+        description: pageDescription,
+        imageUrl: ogImageURL,
+        email: contactEmail,
+        locationLabel: siteConfig.location[lang],
+        sameAs: [siteConfig.github, siteConfig.linkedin],
+      }),
+    );
 ---
 
 <!doctype html>
@@ -27,22 +51,29 @@ const htmlLang = lang === 'pt-br' ? 'pt-BR' : 'en';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={pageDescription} />
-    <meta name="author" content="Lucas Angelo" />
+    <meta name="author" content={siteConfig.name} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0a0f" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
-    <meta property="og:locale" content={htmlLang} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="pt-BR" href={new URL('/', Astro.site)} />
@@ -50,8 +81,13 @@ const htmlLang = lang === 'pt-br' ? 'pt-BR' : 'en';
     <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <title>{pageTitle}</title>
+
+    {!noindex && structuredDataJson && (
+      <script type="application/ld+json" set:html={structuredDataJson} />
+    )}
 
     <script is:inline data-goatcounter="https://lucasmachado.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>

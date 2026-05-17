@@ -6,6 +6,12 @@
   NODE_VERSION = "20"
 
 [[redirects]]
+  from = "https://www.lucasmachado.io/*"
+  to = "https://lucasmachado.io/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "https://www.lucasmachado.com/*"
   to = "https://lucasmachado.io/:splat"
   status = 301
