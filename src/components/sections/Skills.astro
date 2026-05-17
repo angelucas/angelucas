@@ -3,7 +3,7 @@ import Section from '../Section.astro';
 import Badge from '../Badge.astro';
 import { skills, type SkillCategory } from '@/data/skills';
 import { useTranslations, type Lang } from '@/i18n/ui';
-import { Server, Layout, Database, Cloud, Layers } from '@lucide/astro';
+import { Server, Layout, Database, Cloud, Sparkles, Layers } from '@lucide/astro';
 
 interface Props {
   lang: Lang;
@@ -12,13 +12,14 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const categories: SkillCategory[] = ['backend', 'frontend', 'data', 'cloud', 'practices'];
+const categories: SkillCategory[] = ['backend', 'frontend', 'data', 'cloud', 'ai', 'practices'];
 
 const categoryLabels: Record<SkillCategory, string> = {
   backend: t('skills.backend'),
   frontend: t('skills.frontend'),
   data: t('skills.data'),
   cloud: t('skills.cloud'),
+  ai: t('skills.ai'),
   practices: t('skills.practices'),
 };
 
@@ -27,6 +28,7 @@ const categoryIcons = {
   frontend: Layout,
   data: Database,
   cloud: Cloud,
+  ai: Sparkles,
   practices: Layers,
 } as const;
 ---

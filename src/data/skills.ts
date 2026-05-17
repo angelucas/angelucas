@@ -1,4 +1,4 @@
-export type SkillCategory = 'backend' | 'frontend' | 'data' | 'cloud' | 'practices';
+export type SkillCategory = 'backend' | 'frontend' | 'data' | 'cloud' | 'ai' | 'practices';
 
 export interface Skill {
   name: string;
@@ -40,6 +40,12 @@ export const skills: Skill[] = [
   { name: 'Docker', category: 'cloud' },
   { name: 'CI/CD', category: 'cloud' },
   { name: 'Jenkins', category: 'cloud' },
+  // AI (complements Focus section — workflow, not hype)
+  { name: 'AI-assisted development', category: 'ai' },
+  { name: 'LLMs', category: 'ai' },
+  { name: 'Prompt engineering', category: 'ai' },
+  { name: 'Kiro', category: 'ai' },
+  { name: 'Cursor', category: 'ai' },
   // Quality, delivery & product
   { name: 'xUnit', category: 'practices' },
   { name: 'Unit Testing', category: 'practices' },

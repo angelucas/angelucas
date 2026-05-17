@@ -24,11 +24,12 @@ export default {
   'focus.subtitle': 'IA, automação e agentes para evoluir como desenvolvedor',
 
   'skills.title': 'Skills',
-  'skills.subtitle': 'Stack e práticas com impacto em times corporativos e produto',
+  'skills.subtitle': 'Stack, IA aplicada e práticas com impacto em times corporativos',
   'skills.backend': 'Backend & .NET',
   'skills.frontend': 'Frontend',
   'skills.data': 'Dados',
   'skills.cloud': 'Cloud & DevOps',
+  'skills.ai': 'IA & produtividade',
   'skills.practices': 'Qualidade & entrega',
 
   'projects.title': 'Projetos',

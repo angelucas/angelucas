@@ -14,7 +14,10 @@ const { hero, heroFallback } = siteConfig.images;
 ---
 
 <section class="hero" id="hero">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-grid-bg" aria-hidden="true">
+    <span class="hero-grid-base"></span>
+    <span class="hero-grid-pulse"></span>
+  </div>
   <div class="container hero-grid">
     <figure class="hero-photo reveal visible">
       <div class="hero-photo-glow" aria-hidden="true"></div>
@@ -65,12 +68,63 @@ const { hero, heroFallback } = siteConfig.images;
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, black 20%, transparent 72%);
+    overflow: hidden;
     pointer-events: none;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, black 20%, transparent 72%);
+  }
+
+  .hero-grid-base,
+  .hero-grid-pulse {
+    position: absolute;
+    inset: 0;
+    background-size: 56px 56px;
+    background-position: 0 0;
+  }
+
+  /* Grid base sempre visível */
+  .hero-grid-base {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
+  /* Mesma grid, linhas mais claras — revelada em onda (sem overlay colorido) */
+  .hero-grid-pulse {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.11) 1px, transparent 1px);
+    mask-image: linear-gradient(
+      135deg,
+      transparent 38%,
+      #000 50%,
+      transparent 62%
+    );
+    mask-size: 240% 240%;
+    mask-repeat: no-repeat;
+    animation: heroGridPulse 10s ease-in-out infinite;
+    will-change: mask-position, transform;
+  }
+
+  /* Onda: canto superior esquerdo → inferior direito */
+  @keyframes heroGridPulse {
+    0%,
+    70%,
+    100% {
+      mask-position: 100% 100%;
+      transform: scale(1);
+    }
+    6% {
+      mask-position: 85% 85%;
+      transform: scale(1.008);
+    }
+    40% {
+      mask-position: 0% 0%;
+      transform: scale(1.012);
+    }
+    54% {
+      mask-position: 0% 0%;
+      transform: scale(1);
+    }
   }
 
   .hero::before {
@@ -167,14 +221,23 @@ const { hero, heroFallback } = siteConfig.images;
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    object-position: center 15%;
+    object-position: 42% 14%;
+    transform: scale(1.04);
+    transform-origin: 50% 18%;
   }
 
   .hero-photo picture::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10, 10, 15, 0.35) 0%, transparent 45%);
+    background:
+      linear-gradient(to top, rgba(10, 10, 15, 0.35) 0%, transparent 45%),
+      linear-gradient(
+        225deg,
+        transparent 55%,
+        rgba(8, 10, 16, 0.55) 78%,
+        rgba(8, 10, 16, 0.92) 100%
+      );
     pointer-events: none;
   }
 
@@ -257,6 +320,12 @@ const { hero, heroFallback } = siteConfig.images;
   @media (prefers-reduced-motion: reduce) {
     .hero::before {
       animation: none;
+    }
+
+    .hero-grid-pulse {
+      animation: none;
+      mask-image: none;
+      opacity: 0;
     }
   }
 </style>

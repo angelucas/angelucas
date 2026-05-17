@@ -24,11 +24,12 @@ export default {
   'focus.subtitle': 'AI, automation, and agents to grow as a developer',
 
   'skills.title': 'Skills',
-  'skills.subtitle': 'Stack and practices that matter in enterprise and product teams',
+  'skills.subtitle': 'Stack, applied AI, and practices that matter in enterprise teams',
   'skills.backend': 'Backend & .NET',
   'skills.frontend': 'Frontend',
   'skills.data': 'Data',
   'skills.cloud': 'Cloud & DevOps',
+  'skills.ai': 'AI & productivity',
   'skills.practices': 'Quality & delivery',
 
   'projects.title': 'Projects',
