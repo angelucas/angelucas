@@ -3,6 +3,7 @@ import Section from '../Section.astro';
 import Badge from '../Badge.astro';
 import { skills, type SkillCategory } from '@/data/skills';
 import { useTranslations, type Lang } from '@/i18n/ui';
+import { Server, Layout, Database, Cloud, Layers } from '@lucide/astro';
 
 interface Props {
   lang: Lang;
@@ -11,71 +12,156 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const categories: SkillCategory[] = ['backend', 'frontend', 'cloud', 'tools'];
+const categories: SkillCategory[] = ['backend', 'frontend', 'data', 'cloud', 'practices'];
+
 const categoryLabels: Record<SkillCategory, string> = {
   backend: t('skills.backend'),
   frontend: t('skills.frontend'),
+  data: t('skills.data'),
   cloud: t('skills.cloud'),
-  tools: t('skills.tools'),
+  practices: t('skills.practices'),
 };
+
+const categoryIcons = {
+  backend: Server,
+  frontend: Layout,
+  data: Database,
+  cloud: Cloud,
+  practices: Layers,
+} as const;
 ---
 
-<Section id="skills" class="skills-layout">
+<Section id="skills" class="skills-section">
   <h2 class="section-title">{t('skills.title')}</h2>
   <p class="section-subtitle">{t('skills.subtitle')}</p>
 
-  {
-    categories.map((cat) => (
-      <article class="skill-category card">
-        <h3 class="category-title">{categoryLabels[cat]}</h3>
-        <ul class="skill-list">
-          {skills
-            .filter((s) => s.category === cat)
-            .map((skill) => (
-              <li class="skill-item">
-                <Badge label={skill.name} />
-              </li>
-            ))}
-        </ul>
-      </article>
-    ))
-  }
+  <div class="skills-grid">
+    {
+      categories.map((cat, index) => {
+        const Icon = categoryIcons[cat];
+        const items = skills.filter((s) => s.category === cat);
+        return (
+          <article class="skill-card card reveal" style={`--stagger-index: ${index}`}>
+            <div class="skill-accent" aria-hidden="true" />
+            <header class="skill-card-header">
+              <span class="skill-icon-wrap" aria-hidden="true">
+                <Icon class="skill-icon" size={20} stroke-width={1.5} />
+              </span>
+              <h3 class="skill-card-title">{categoryLabels[cat]}</h3>
+              <span class="skill-count">{items.length}</span>
+            </header>
+            <ul class="skill-list">
+              {items.map((skill) => (
+                <li>
+                  <Badge label={skill.name} />
+                </li>
+              ))}
+            </ul>
+          </article>
+        );
+      })
+    }
+  </div>
 </Section>
 
 <style>
-  :global(.skills-layout) {
+  :global(.skills-section .section-title),
+  :global(.skills-section .section-subtitle) {
+    margin-bottom: 0;
+  }
+
+  :global(.skills-section .section-subtitle) {
+    margin-bottom: 0.5rem;
+  }
+
+  .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
-    align-content: start;
+    margin-top: 2rem;
   }
 
-  :global(.skills-layout .section-title),
-  :global(.skills-layout .section-subtitle) {
-    grid-column: 1 / -1;
+  .skill-card {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  .category-title {
-    font-size: 0.875rem;
-    font-weight: 600;
+  .skill-accent {
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-gradient-1),
+      var(--color-gradient-2)
+    );
+    opacity: 0.85;
+  }
+
+  .skill-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .skill-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border-radius: var(--radius);
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
     color: var(--color-accent-light);
-    margin-bottom: 1rem;
+    transition: var(--transition);
+  }
+
+  .skill-card:hover .skill-icon-wrap {
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.12);
+  }
+
+  .skill-icon {
+    display: block;
+  }
+
+  .skill-card-title {
+    flex: 1;
+    font-size: 0.8125rem;
+    font-weight: 600;
     font-family: var(--font-mono);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-light);
+    line-height: 1.3;
+  }
+
+  .skill-count {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted);
+    letter-spacing: 0.08em;
   }
 
   .skill-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    list-style: none;
+    padding: 1rem 1.25rem 1.25rem;
   }
 
-  .skill-item {
-    transition: transform var(--transition);
-  }
+  @media (prefers-reduced-motion: reduce) {
+    .skill-icon-wrap {
+      transition: none;
+    }
 
-  .skill-item:hover {
-    transform: scale(1.05);
+    .skill-card:hover .skill-icon-wrap {
+      box-shadow: none;
+    }
   }
 </style>

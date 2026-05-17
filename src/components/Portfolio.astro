@@ -2,7 +2,7 @@
 import Hero from './sections/Hero.astro';
 import Focus from './sections/Focus.astro';
 import Skills from './sections/Skills.astro';
-import Projects from './sections/Projects.astro';
+// import Projects from './sections/Projects.astro';
 import Experience from './sections/Experience.astro';
 import Contact from './sections/Contact.astro';
 import type { Lang } from '@/i18n/ui';
@@ -17,6 +17,8 @@ const { lang } = Astro.props;
 <Hero lang={lang} />
 <Focus lang={lang} />
 <Skills lang={lang} />
+{/* Seção desativada temporariamente (conteúdo desatualizado)
 <Projects lang={lang} />
+*/}
 <Experience lang={lang} />
 <Contact lang={lang} />

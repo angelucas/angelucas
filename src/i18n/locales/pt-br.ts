@@ -21,14 +21,15 @@ export default {
   'hero.cta.contact': 'Entrar em contato',
 
   'focus.title': 'Foco atual',
-  'focus.subtitle': 'Como estou evoluindo minha prática como desenvolvedor',
+  'focus.subtitle': 'IA, automação e agentes para evoluir como desenvolvedor',
 
   'skills.title': 'Skills',
-  'skills.subtitle': 'Tecnologias que uso no dia a dia',
-  'skills.backend': 'Backend',
+  'skills.subtitle': 'Stack e práticas com impacto em times corporativos e produto',
+  'skills.backend': 'Backend & .NET',
   'skills.frontend': 'Frontend',
+  'skills.data': 'Dados',
   'skills.cloud': 'Cloud & DevOps',
-  'skills.tools': 'Ferramentas',
+  'skills.practices': 'Qualidade & entrega',
 
   'projects.title': 'Projetos',
   'projects.subtitle': 'Trabalhos selecionados e experimentos',

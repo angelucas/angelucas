@@ -1,7 +1,8 @@
 ---
 import Section from '../Section.astro';
-import { focusItems } from '@/data/focus';
+import { focusPillars } from '@/data/focus';
 import { useTranslations, type Lang } from '@/i18n/ui';
+import { Sparkles, Bot, BookOpen } from '@lucide/astro';
 
 interface Props {
   lang: Lang;
@@ -9,49 +10,116 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const items = focusItems[lang];
+
+const pillarIcons = {
+  'ai-dev': Sparkles,
+  agents: Bot,
+  growth: BookOpen,
+} as const;
 ---
 
 <Section id="focus">
   <h2 class="section-title">{t('focus.title')}</h2>
   <p class="section-subtitle">{t('focus.subtitle')}</p>
 
-  <article class="focus-card card">
-    <ul class="focus-list">
-      {items.map((item) => (
-        <li class="focus-item">{item}</li>
-      ))}
-    </ul>
-  </article>
+  <ul class="focus-grid">
+    {
+      focusPillars.map((pillar, index) => {
+        const Icon = pillarIcons[pillar.id as keyof typeof pillarIcons] ?? Sparkles;
+        return (
+          <li class="focus-grid-item reveal" style={`--stagger-index: ${index}`}>
+            <article class="focus-card card">
+              <div class="focus-accent" aria-hidden="true" />
+              <div class="focus-icon-wrap" aria-hidden="true">
+                <Icon class="focus-icon" size={22} stroke-width={1.5} />
+              </div>
+              <h3 class="focus-card-title">{pillar.title[lang]}</h3>
+              <p class="focus-card-desc">{pillar.description[lang]}</p>
+            </article>
+          </li>
+        );
+      })
+    }
+  </ul>
 </Section>
 
 <style>
-  .focus-card {
-    max-width: 720px;
-    border-left: 3px solid var(--color-accent);
-    padding-left: 1.5rem;
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    list-style: none;
   }
 
-  .focus-list {
-    list-style: none;
+  .focus-grid-item {
+    display: flex;
+  }
+
+  .focus-card {
+    position: relative;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    padding: 0;
+    overflow: hidden;
   }
 
-  .focus-item {
-    position: relative;
-    padding-left: 1.25rem;
+  .focus-accent {
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-gradient-3),
+      var(--color-gradient-2),
+      var(--color-gradient-1)
+    );
+    opacity: 0.9;
+  }
+
+  .focus-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 1.5rem 1.5rem 0;
+    border-radius: var(--radius);
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.22);
+    color: var(--color-accent-light);
+    transition: var(--transition);
+  }
+
+  .focus-card:hover .focus-icon-wrap {
+    background: rgba(6, 182, 212, 0.16);
+    border-color: rgba(6, 182, 212, 0.35);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.12);
+  }
+
+  .focus-icon {
+    display: block;
+  }
+
+  .focus-card-title {
+    font-size: 1.0625rem;
+    margin: 1rem 1.5rem 0.5rem;
+    line-height: 1.35;
+  }
+
+  .focus-card-desc {
+    flex: 1;
+    margin: 0 1.5rem 1.5rem;
+    font-size: 0.9375rem;
     color: var(--color-muted);
     line-height: 1.65;
-    font-size: 0.9375rem;
   }
 
-  .focus-item::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent-light);
-    font-weight: 600;
+  @media (prefers-reduced-motion: reduce) {
+    .focus-icon-wrap {
+      transition: none;
+    }
+
+    .focus-card:hover .focus-icon-wrap {
+      box-shadow: none;
+    }
   }
 </style>
